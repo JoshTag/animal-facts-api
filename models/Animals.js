@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Create Schema
+// Create Animal Schema
 const AnimalSchema = new Schema({
   name: {
     type: String,
@@ -10,8 +10,7 @@ const AnimalSchema = new Schema({
   },
   facts: {
     type: Array,
-    required: true,
-    default: []
+    required: [true, "Facts must be included"]
   }
 }, {
   collection: "animals"
