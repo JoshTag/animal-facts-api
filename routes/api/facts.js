@@ -21,7 +21,10 @@ router.get("/random", (req, res) => {
     Fact.findOne()
       .skip(random)
       .then(fact => {
-        res.status(200).send({ success: true, data: getRandom(fact.facts) });
+        res.status(200).send({
+          success: true,
+          data: { name: fact.name, facts: getRandom(fact.facts) }
+        });
       })
       .catch(err => ({ success: false, error: err }));
   });
@@ -34,19 +37,25 @@ router.get("/:animal", (req, res) => {
 
   if (!checkQuery) {
     res.status(400).send({
-        success: false,
-        message: "The random query must be 'true' or 'false'"
-      });
+      success: false,
+      message: "The random query must be 'true' or 'false'"
+    });
     return;
   }
 
   if (random === "true") {
     Fact.findOne({ name: req.params.animal }).then(animal => {
-      res.status(200).send({ success: true, data: getRandom(animal.facts) });
+      res.status(200).send({
+        success: true,
+        data: { name: animal.name, facts: getRandom(animal.facts) }
+      });
     });
   } else {
     Fact.findOne({ name: req.params.animal }).then(animal => {
-      res.status(200).send({ success: true, data: animal });
+      res.status(200).send({
+        success: true,
+        data: { name: animal.name, facts: animal.facts }
+      });
     });
   }
 });
