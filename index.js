@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
 const facts = require("./routes/api/facts");
-const updates = require("./routes/api/updates");
+// const updates = require("./routes/api/updates");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
