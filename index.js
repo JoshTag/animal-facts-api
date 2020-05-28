@@ -31,7 +31,7 @@ mongoose
 
 // Use Routes
 app.use("/api/facts", facts);
-app.use("/api/facts", updates);
+// app.use("/api/facts", updates);
 
 // Ping Route
 app.use("/api/ping", router.get("/"), (req, res) => {
