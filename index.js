@@ -1,5 +1,7 @@
 require("dotenv").config();
 const express = require("express");
+const { Router } = require("express");
+const router = Router();
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -30,6 +32,11 @@ mongoose
 // Use Routes
 app.use("/api/facts", facts);
 app.use("/api/facts", updates);
+
+// Ping Route
+app.use("/api/ping", router.get("/"), (req, res) => {
+  res.status(200).send({ success: true })
+})
 
 app.listen(port, () => {
   console.log(`||==================== Server running on port ${port} ====================||`);
